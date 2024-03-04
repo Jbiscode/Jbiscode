@@ -4,7 +4,7 @@
 
 ###
 
-<h2 align="left">Hi 👋! My name is ... and I'm a ..., from ....</h2>
+<h2 align="left">Hi 👋! My name is Sa JaeBin and I'm a BackendDeveloper, from Korea</h2>
 
 ###
 
