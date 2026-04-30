@@ -49,12 +49,58 @@
 <details>
 <summary><b>대표 성과</b> (펼치기)</summary>
 
-- 시멘트 PoC: AI 예측 → 공정 가이던스 E2E, **합의 가동률 90%+**, 일본 공장 **실운영** · OPC 오픈소스 **upstream PR** 기여  
+- 시멘트 PoC: AI 예측 → 공정 가이던스 E2E, **합의 가동률 90%+**, 일본 공장 **실운영** · [**OpenOPC 2**](https://github.com/iterativ/openopc2) [**#68**](https://github.com/iterativ/openopc2/pull/68) **merge** — DCOM 원격 연결 시 호스트가 `localhost`로 고정되던 문제([**#67**](https://github.com/iterativ/openopc2/issues/67))를 upstream에 반영  
 - 발전 DX: 엑셀 수기 입찰·예측 → **레이크·주기 추론·운영 UI**로 **100% 전산화** · Iceberg + S3 + DynamoDB + Step Functions 패턴 설계·고객 컨펌  
 - 유리: **15년 전 C# 바이너리 리버스**로 Modbus 사양 복원, 센서–설정 1:1 매핑 재구축 → 피드백 정확도 향상  
 - 철강: 실시간 결함 추적·**동적 합격/불합격 엔진**, TCP 경계·ACK·재연결, RabbitMQ + DB 이중 적재로 **유실 방지**, SSE 알림  
 
 </details>
+
+---
+
+### 오픈소스 기여
+
+<p align="center">
+  <a href="https://github.com/iterativ/openopc2/issues/67"><img src="https://img.shields.io/badge/Issue-%2367-1f883d?style=for-the-badge&logo=github&logoColor=white" alt="Issue 67"/></a>
+  &nbsp;
+  <a href="https://github.com/iterativ/openopc2/pull/68"><img src="https://img.shields.io/badge/PR-%2368_merged-8250df?style=for-the-badge&logo=github&logoColor=white" alt="PR 68 merged"/></a>
+  &nbsp;
+  <a href="https://github.com/iterativ/openopc2"><img src="https://img.shields.io/github/stars/iterativ/openopc2?style=for-the-badge&logo=github&color=353D41&labelColor=181717&logoColor=white&label=stars" alt="GitHub stars"/></a>
+</p>
+
+<p align="center">
+  <strong><a href="https://github.com/iterativ/openopc2">iterativ / OpenOPC 2</a></strong><br/>
+  <sub>OPC Classic (OPC DA) · Python 3 · Gateway / CLI — <a href="https://github.com/iterativ/openopc2/blob/develop/README.md">README</a></sub>
+</p>
+
+<br/>
+
+**맥락**
+
+- Windows **클라이언트 PC**와 **별도 PC의 OPC 서버**를 같은 망에서 **DCOM**으로 직접 연결하는 구성  
+- `connect` 흐름에서 호스트가 **`localhost`에 고정**되어, 설정한 원격 IP(`OPC_HOST_IP`)가 반영되지 않는 현상을 재현·정리  
+
+**기여 ([#67](https://github.com/iterativ/openopc2/issues/67) → [#68](https://github.com/iterativ/openopc2/pull/68))**
+
+- `OpcDaClient` · `OpcCom`의 `connect` **파라미터 순서**를 `(opc_server, opc_host)`에 맞게 수정  
+- **`localhost` 하드코딩 제거** → 지정한 호스트로 **동적 연결**  
+- 관련 **타입 힌트** 정리  
+
+<p align="center">
+  <sub><code>develop</code> merge · 2024-11-07 · merged by <a href="https://github.com/renzop">@renzop</a></sub>
+</p>
+
+<p align="center">
+  <sub>현장 검증: <strong>openopc2 v0.1.18</strong> 기준, 원격 OPC 서버 연결 정상 동작 확인</sub>
+</p>
+
+<br/>
+
+<p align="center">
+  <a href="https://github.com/iterativ/openopc2/pull/68">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=iterativ&repo=openopc2&theme=catppuccin_mocha&hide_border=true&border_radius=14&show_owner=true&bg_color=1e1e2e&title_color=cba6f7&icon_color=89b4fa&text_color=cdd6f4" width="420" alt="iterativ/openopc2 repository card"/>
+  </a>
+</p>
 
 ---
 
